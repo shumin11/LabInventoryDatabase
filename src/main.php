@@ -9,18 +9,23 @@
     </head>
 
     <body>
-        <nav>
-            <label class="logo">Lab Inventory Management System</label>
+        <img class="logo" src="" alt="logo">
+        <div class="topbar">
+            <header>Lab Inventory Management System</header>
+            <header>User ID</header>
+            <header>SIGN OUT</header>
+        </div>
+
+        <div class="sidebar">
+            <header>Lab Inventory Management System</header>
             <ul>
-                <li><a href="#">LAB</a></li>
-                <li><a href="#">CURRENT STOCK</a></li>
-                <li><a href="#">PURCHASE</a></li>
-                <li><a href="#">VENDOR</a></li>
-                <li><a href="#">WASTE</a></li>
-                <li><a href="#">MEMBERS</a></li>
+                <li><a href="Lab.php">LAB</a></li>
+                <li><a href="CurrentStock.php">CURRENT STOCK</a></li>
+                <li><a href="Purchase.php">PURCHASE</a></li>
+                <li><a href="Vendor.php">VENDOR</a></li>
+                <li><a href="Waste.php">WASTE</a></li>
+                <li><a href="Members.php">MEMBERS</a></li>
             </ul>
-        </nav>
+        </div>
     </body>
-
-
 </html>
