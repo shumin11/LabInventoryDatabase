@@ -54,7 +54,7 @@
   }
 
   .sidebar{
-    position: fixed;
+    position: fixed; 
     left: -0;
     width: 25%;
     height: 100%;
@@ -62,22 +62,24 @@
     margin-top: 0px;
 }
 
-.sidebar ul a{
-    display: block;
+.sidebar li{
+    display: inline-block;
     height: 100%;
     width: 100%;
     line-height: 65px;
-    font-size: 20px;
+    font-weight: 200px;
+    font-size: 10px;
     color: white;
     padding-left: 20px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     /* border-top: 1px solid rgba(255, 255, 255); */
     border-bottom: 1px solid rgba(255, 255, 255);
     transition: .4s;
 }
 
-ul li:hover a{
-    padding-left: 50px;
-}
+input, textarea {
+    font-size: 200%;
+    }
+
 
   
