@@ -20,8 +20,8 @@
             <?php } ?>
 
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" name="username" id="username">
+                <label for="userid" class="form-label">UserID</label>
+                <input type="text" class="form-control" name="userid" id="userid">
             </div>
 
             <div class="mb-3">
