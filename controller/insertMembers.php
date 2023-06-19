@@ -17,7 +17,6 @@
 </form>
 
 
-
 <?php
 if (isset($_POST['insertMembers'])) {
     addToDB("CurrentStock",$_POST['Name'], $_POST['Email'],$_POST['UserID'],$_POST['Phone'],

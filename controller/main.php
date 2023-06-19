@@ -145,17 +145,6 @@
             }
         }
 
-        function printResult($result) { //prints results from a select statement
-            echo "<br>Retrieved data from table demoTable:<br>";
-            echo "<table>";
-            echo "<tr><th>ID</th><th>Name</th></tr>";
-
-            while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row["ID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
-            }
-
-            echo "</table>";
-        }
 
         function connectToDB() {
             global $db_conn;
@@ -182,16 +171,7 @@
             OCILogoff($db_conn);
         }
 
-        function handleUpdateRequest() {
-            global $db_conn;
-
-            $old_name = $_POST['oldName'];
-            $new_name = $_POST['newName'];
-
-            // you need the wrap the old name and new name values with single quotations
-            executePlainSQL("UPDATE demoTable SET name='" . $new_name . "' WHERE name='" . $old_name . "'");
-            OCICommit($db_conn);
-        }
+    
 
         function handleResetRequest() {
             global $db_conn;
@@ -202,33 +182,6 @@
             echo "<br> creating new table <br>";
             executePlainSQL("CREATE TABLE demoTable (id int PRIMARY KEY, name char(30))");
             OCICommit($db_conn);
-        }
-
-        function handleInsertRequest() {
-            global $db_conn;
-
-            //Getting the values from user and insert data into the table
-            $tuple = array (
-                ":bind1" => $_POST['insNo'],
-                ":bind2" => $_POST['insName']
-            );
-
-            $alltuples = array (
-                $tuple
-            );
-
-            executeBoundSQL("insert into demoTable values (:bind1, :bind2)", $alltuples);
-            OCICommit($db_conn);
-        }
-
-        function handleCountRequest() {
-            global $db_conn;
-
-            $result = executePlainSQL("SELECT Count(*) FROM demoTable");
-
-            if (($row = oci_fetch_row($result)) != false) {
-                echo "<br> The number of tuples in demoTable: " . $row[0] . "<br>";
-            }
         }
 
         // HANDLE ALL POST ROUTES
@@ -252,23 +205,25 @@
             $plainSQL = "";
             if (connectToDB()) {
                  switch ($table) {
-                    case "Team":
-                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
+                    case "Lab":
+                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "')";
                 break;
-            case "Player":
-                $plainSQL = "INSERT into " . $table . " values('" . $val1 . "')";
+                case "Current Stock":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
+                    '" . $val5 . "','" . $val6 . "','" . $val7 . "','" . $val8 . "')";
                 break;
-            case "Coach":
-                $plainSQL = "INSERT into " . $table . " values('" . $val1 . "')";
+                case "Purchase":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
+                    '" . $val5 . "','" . $val6 . "')";
                 break;
-            case "Champion":
-                $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
+                case "Vendor":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                 break;
-            case "Championship":
-                $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
+                case "Waste":
+                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "','" . $val5 . "')";
                 break;
-            case "Record":
-                $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "','" . $val5 . "')";
+                case "Members":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                 break;
             default:
                 break;
