@@ -14,7 +14,7 @@
         <div class="toppane">
             <h1 style="color: white; font-size: 40px;">Lab Inventory Management System</h1>
             <div class="top-buttons">
-                <button>Sign Out</button>
+                <button onclick="window.location.href='/login/index.php'">Sign Out</button>
             </div>
         </div>
 
