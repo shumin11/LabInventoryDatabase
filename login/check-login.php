@@ -18,6 +18,8 @@ if (isset($_POST["userid"]) && isset($_POST["password"]) && isset($_POST["role"]
     } else if (empty($password)) {
         header("Location: index.php?error=Password is Required");
     } else {
+        // Hashing the password
+        $password = md5($password);
         header("Location: ../controller/main.php");
     }
 } else {
