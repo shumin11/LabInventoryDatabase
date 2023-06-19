@@ -9,29 +9,61 @@
     </head>
 
     <body>
-        <!--header area start-->
-        <header>
-            <div class="left_area">
-                <h3>Name of our system</h3>
+    <div class="container">
+        <div class="toppane">
+                <h1>Lab Inventory Management System</h1>
+            <div class="top-buttons">
+                <button>Sign Out</button>
             </div>
-            <div class="right_area">
-                <a href="#" class="UserID_btn">UserID</a>
-                <a href="#" class="logout_btn">Logout</a>
-            </div>
-        </header>
-        <!--header area end-->
-
-        <!--sidebar start-->
-        <div class="sidebar">
-            <ul>
-                <li><a href="Lab.php">LAB</a></li>
-                <li><a href="CurrentStock.php">CURRENT STOCK</a></li>
-                <li><a href="Purchase.php">PURCHASE</a></li>
-                <li><a href="Vendor.php">VENDOR</a></li>
-                <li><a href="Waste.php">WASTE</a></li>
-                <li><a href="Members.php">MEMBERS</a></li>
-            </ul>
         </div>
-        <!--sidebar end-->
+
+        <div class="d-flex">
+            <div class="leftpane">
+                <div class = "sidebar">
+                    <ul>
+                        <li><a href="Lab.php">LAB</a></li>
+                        <li><a href="CurrentStock.php">CURRENT STOCK</a></li>
+                        <li><a href="Purchase.php">PURCHASE</a></li>
+                        <li><a href="Vendor.php">VENDOR</a></li>
+                        <li><a href="Waste.php">WASTE</a></li>
+                        <li><a href="Members.php">MEMBERS</a></li>
+                    </ul>
+                </div>
+                 
+
+
+
+
+             </div>
+
+            <div class="middlepane">
+                Test Page
+            </div>
+
+            <div class="rightpane">
+            <h2>Insert </h2>
+                <form method="POST" action="oracle-test.php"> <!--refresh page when submitted-->
+                    <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
+                     Number: <input type="text" name="insNo"> <br /><br />
+                     Name: <input type="text" name="insName"> <br /><br />
+
+                    <input type="submit" value="Insert" name="insertSubmit"></p>
+                 </form>
+
+            <h2>Update </h2>   
+                <form method="POST" action="oracle-test.php"> <!--refresh page when submitted-->
+                    <input type="hidden" id="updateQueryRequest" name="updateQueryRequest">
+                        Old Name: <input type="text" name="oldName"> <br /><br />
+                        New Name: <input type="text" name="newName"> <br /><br />
+
+                    <input type="submit" value="Update" name="updateSubmit"></p>
+                </form>
+
+            </div>
+         </div>
+    </div>
+            
+
+
     </body>
 </html>
