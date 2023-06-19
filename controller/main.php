@@ -13,7 +13,7 @@
         <div class="toppane">
                 <h1 style="color: white; font-size: 40px;">Lab Inventory Management System</h1>
             <div class="top-buttons">
-                <button>Sign Out</button>
+                <button onclick = "window.location.href = '/login/index.php' ">Sign Out</button>
             </div>
         </div>
 
@@ -229,14 +229,14 @@
                 break;
         }
         if (executePlainSQL($plainSQL)) {
-            OCICommit($db_conn);
-            echo $val1 . ' has ben added to data base';
-        } else {
+             OCICommit($db_conn);
+             echo $val1 . ' has ben added to data base';
+            } else {
             echo "Fail to add";
+            }
         }
-    }
-    disconnectFromDB();
-}
+            disconnectFromDB();
+        }
 
 
         // HANDLE ALL GET ROUTES
