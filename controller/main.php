@@ -54,7 +54,7 @@
             </div>
 
             <div class="middlepane">
-                Test Page
+                <?php include('listeners/filterListener.php'); ?>
 
 
 
