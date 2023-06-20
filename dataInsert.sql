@@ -2,6 +2,10 @@ drop table Items;
 
 drop table ItemUnit;
 
+drop table Chemicals;
+
+drop table Equipments;
+
 drop table Keep;
 
 drop table Cabinet_In;
@@ -41,6 +45,24 @@ CREATE TABLE ItemUnit (Full Name CHAR(20) PRIMARY KEY, Unit CHAR(20));
 grant
 select
     on ItemUnit to public;
+
+CREATE TABLE Chemicals (
+    Catalog number INTEGER PRIMARY KEY,
+    Expiry date DATE
+);
+
+grant
+select
+    on Chemicals to public;
+
+CREATE TABLE Equipments (
+    Catalog number INTEGER PRIMARY KEY,
+    Maintenance frequency CHAR(20)
+);
+
+grant
+select
+    on Equipments to public;
 
 CREATE TABLE Keep (
     ShelfID INTEGER Number INTEGER,
@@ -233,6 +255,19 @@ VALUES
     ('Glassware A', 'pieces');
 
 INSERT INTO
+    Chemicals (Catalog_number, Expiry_date)
+VALUES
+    (1001, '2024-12-31'),
+    (1002, '2023-09-15');
+
+INSERT INTO
+    Equipments (Catalog_number, Maintenance_frequency)
+VALUES
+    (1003, 'Monthly'),
+    (1004, 'Quarterly'),
+    (1005, 'Annual');
+
+INSERT INTO
     Keep (
         ShelfID,
         Number,
@@ -242,10 +277,7 @@ INSERT INTO
     )
 VALUES
     (1, 1, 'Building A', 1001, '2023-06-01'),
-    (2, 3, 'Building B', 1002, '2023-06-02'),
-    (1, 2, 'Building A', 1005, '2023-06-05'),
-    (3, 4, 'Building C', 1003, '2023-06-06'),
-    (2, 1, 'Building B', 1004, '2023-06-07');
+    (2, 3, 'Building B', 1002, '2023-06-02');
 
 INSERT INTO
     Cabinet_In (ShelfID, Number, Building_name)
