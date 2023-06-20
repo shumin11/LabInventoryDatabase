@@ -233,24 +233,6 @@ VALUES
     ('Glassware A', 'pieces');
 
 INSERT INTO
-    Chemicals (Catalog_number, Expiry_date)
-VALUES
-    (1001, '2024-12-31'),
-    (1002, '2023-09-15'),
-    (1006, '2025-06-30'),
-    (1007, '2023-11-30'),
-    (1010, '2024-08-01');
-
-INSERT INTO
-    Equipments (Catalog_number, Maintenance_frequency)
-VALUES
-    (1003, 'Monthly'),
-    (1004, 'Quarterly'),
-    (1008, 'Annual'),
-    (1009, 'Biennial'),
-    (1011, 'Monthly');
-
-INSERT INTO
     Keep (
         ShelfID,
         Number,
