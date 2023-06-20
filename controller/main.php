@@ -54,9 +54,9 @@
             </div>
 
             <div class="middlepane">
-                Test Page
+                <?php include('listeners/filterListener.php'); ?>
 
-
+                <?PHP include('listeners/mainDisplay.php'); ?>
 
             </div>
 
