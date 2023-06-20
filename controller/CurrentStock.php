@@ -1,11 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Current Stock</title>
-</head>
-<body>
-    
-</body>
-</html>
+<div style="height:30px;" class="middlepane">
+    <div class="filter">
+        <form method="POST" action="main.php">
+            <label> FILTER </label>
+            <input class = "currentStockFilter" type="submit" name="currentStockFilter" value="ALL" />
+            <?php
+            if (connectToDB()) {
+                global $db_conn;
+                $result = executePlainSQL("SELECT DISTINCT Type FROM Items");
+            }
+            while ($row = oci_fetch_array($result, OCI_BOTH)) {
+                echo '<input class="currentStockFilter" type="submit" name="currentStockFilter"
+                value=' . $row["Type"] . '/>'; 
+            }
+            disconnectFromDB();
+            ?>
+        </form>
+    </div>
+</div>
