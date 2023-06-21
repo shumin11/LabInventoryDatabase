@@ -22,7 +22,7 @@
 <?php
 if (isset($_POST['insertPurchase'])) {
     addToDB(
-        "CurrentStock",
+        "Purchase",
         $_POST['CatalogNumber'],
         $_POST['AdminID'],
         $_POST['VendorName'],
@@ -31,6 +31,6 @@ if (isset($_POST['insertPurchase'])) {
         $_POST['UnitPrice'],
         null,
         null
-    );
+    ); 
 }
 ?>
