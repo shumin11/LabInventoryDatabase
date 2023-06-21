@@ -313,6 +313,25 @@
         disconnectFromDB();
     }
 
+    function deleteFromDB($table, $value) {
+        global $db_conn;
+        $plainSQL = "";
+
+        if (connectToDB()) {
+            switch ($table) {
+                case "Vendor":
+                    $plainSQL = "DELETE from " .$table. "WHERE Name='" . $value ."'";
+                    break;
+                case "Purchase":
+                    $plainSQL = "DELETE from " .$table. "WHERE Name='" . $value ."'";
+                    break;
+                default:
+                    break;
+            }
+        }
+        disconnectFromDB();
+    }
+
     // HANDLE ALL POST ROUTES
     // A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
     function handlePOSTRequest()
