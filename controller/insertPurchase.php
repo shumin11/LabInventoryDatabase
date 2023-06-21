@@ -33,6 +33,9 @@ if (isset($_POST['insertPurchase'])) {
         null,
         null
     );
-    $result = executePlainSQL("select QUan");
+    $result = executePlainSQL("select I.Quantity, I.Type from Items I where I.CatalogNumber = CatalogNumber");
+    while ($row = oci_fetch_array($result, OCI_BOTH)) {
+        echo $row[0] . "      " . $row[1] . '</br>';
+    }
 }
 ?>
