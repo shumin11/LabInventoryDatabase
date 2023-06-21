@@ -29,8 +29,8 @@ drop table Vendors;
 drop table Purchase;
 
 CREATE TABLE Items (
-    Catalog number INTEGER PRIMARY KEY,
-    Full Name CHAR(20),
+    CatalogNumber INTEGER PRIMARY KEY,
+    FullName CHAR(20),
     Description CHAR(100),
     Quantity INTEGER,
     Type CHAR(20)
@@ -47,8 +47,8 @@ select
     on ItemUnit to public;
 
 CREATE TABLE Chemicals (
-    Catalog number INTEGER PRIMARY KEY,
-    Expiry date DATE
+    CatalogNumber INTEGER PRIMARY KEY,
+    ExpiryDate DATE
 );
 
 grant
@@ -56,8 +56,8 @@ select
     on Chemicals to public;
 
 CREATE TABLE Equipments (
-    Catalog number INTEGER PRIMARY KEY,
-    Maintenance frequency CHAR(20)
+    CatalogNumber INTEGER PRIMARY KEY,
+    MaintenanceFrequency CHAR(20)
 );
 
 grant
@@ -66,12 +66,12 @@ select
 
 CREATE TABLE Keep (
     ShelfID INTEGER Number INTEGER,
-    Building name CHAR(20),
-    Catalog number INTEGER,
+    BuildingName CHAR(20),
+    CatalogNumber INTEGER,
     Date DATE,
-    PRIMARY KEY (ShelfID, Number, Building name, Catalog number),
-    FOREIGN KEY (SelfID, Number, Building name) REFERENCES Cabinet_In(ShelfID, Number, Building Name),
-    FOREIGN KEY (Catalog number) REFERENCES Items(Catalog number)
+    PRIMARY KEY (ShelfID, Number, BuildingName, CatalogNumber),
+    FOREIGN KEY (SelfID, Number, BuildingName) REFERENCES Cabinet_In(ShelfID, Number, BuildingName),
+    FOREIGN KEY (CatalogNumber) REFERENCES Items(CatalogNumber)
 );
 
 grant
@@ -81,9 +81,9 @@ select
 CREATE TABLE Cabinet_In (
     ShelfID INTEGER,
     Number INTEGER,
-    Building name char(20),
-    PRIMARY KEY (ShelfID, Number, Building name),
-    FOREIGN KEY (Number, Building name) REFERENCES Room(Number, Building Name)
+    BuildingName char(20),
+    PRIMARY KEY (ShelfID, Number, BuildingName),
+    FOREIGN KEY (Number, BuildingName) REFERENCES Room(Number, BuildingName)
 );
 
 grant
@@ -92,8 +92,8 @@ select
 
 CREATE TABLE Room (
     Number INTEGER,
-    Building name char(20),
-    PRIMARY KEY (Number, Building name)
+    BuildingName char(20),
+    PRIMARY KEY (Number, BuildingName)
 );
 
 grant
@@ -101,12 +101,12 @@ select
     on Room to public;
 
 CREATE TABLE Use (
-    Catalog number INTEGER,
-    User ID char(20),
+    CatalogNumber INTEGER,
+    UserID char(20),
     Date DATE,
-    PRIMARY KEY (Catalog number, User ID),
-    FOREIGN KEY (Catalog number) REFERENCES Items(Catalog number),
-    FOREIGN KEY (User ID) REFERENCES Lab members(User ID)
+    PRIMARY KEY (CatalogNumber, UserID),
+    FOREIGN KEY (CatalogNumber) REFERENCES Items(CatalogNumber),
+    FOREIGN KEY (UserID) REFERENCES Lab members(UserID)
 );
 
 grant
@@ -114,7 +114,7 @@ select
     on Use to public;
 
 CREATE TABLE LabMembers (
-    User ID char(20) PRIMARY KEY,
+    UserID char(20) PRIMARY KEY,
     Name char(20),
     Email char(20),
     Phone char(20)
@@ -125,11 +125,11 @@ select
     on LabMembers to public;
 
 CREATE TABLE Involve (
-    Use ID char(20),
+    UserID char(20),
     ID INTEGER,
-    Enroll date DATE,
-    PRIMARY KEY (User ID, ID),
-    FOREIGN KEY (User ID) REFERENCES Lab member(User ID),
+    EnrollDate DATE,
+    PRIMARY KEY (UserID, ID),
+    FOREIGN KEY (UserID) REFERENCES Lab member(UserID),
     FOREIGN KEY (ID) REFERENCES Lab(ID)
 );
 
@@ -148,7 +148,7 @@ select
     on Lab to public;
 
 CREATE TABLE LabManager (
-    Admin ID INTEGER PRIMARY KEY,
+    AdminID INTEGER PRIMARY KEY,
     Name char(20),
     Email char(20),
     Phone char(20),
@@ -164,9 +164,9 @@ CREATE TABLE Chemical_Waste_Dispose(
     ID INTEGER PRIMARY KEY,
     Name char(20),
     Description char(200),
-    Admin ID INTEGER,
+    AdminID INTEGER,
     Date DATE,
-    FOREIGN KEY (Admin ID) REFERENCES Lab Manager(Admin ID)
+    FOREIGN KEY (AdminID) REFERENCES Lab Manager(AdminID)
 );
 
 grant
@@ -186,13 +186,15 @@ select
     on Vendors to public;
 
 CREATE TABLE Purchase (
-    Catalog number INTEGER,
-    Admin ID INTEGER,
+    CatalogNumber INTEGER,
+    AdminID INTEGER,
     Name char(20),
     Address char(50),
-    Date DATE Unit price INTEGER PRIMARY KEY (Catalog number, Admin ID, Name, Address),
-    FOREIGN KEY (Catalog number) REFERENCES Items(Catalog number),
-    FOREIGN KEY (Admin ID) REFERENCES Lab Manager(Admin ID),
+    Date DATE,
+    UnitPrice INTEGER,
+    PRIMARY KEY (CatalogNumber, AdminID, Name, Address),
+    FOREIGN KEY (CatalogNumber) REFERENCES Items(CatalogNumber),
+    FOREIGN KEY (AdminID) REFERENCES Lab Manager(AdminID),
     FOREIGN KEY (Name, Address) REFERENCES Vendor(Name, Address)
 );
 
@@ -202,8 +204,8 @@ select
 
 INSERT INTO
     Items (
-        Catalog_number,
-        Full_Name,
+        CatalogNumber,
+        FullName,
         Description,
         Quantity,
         Type
@@ -246,7 +248,7 @@ VALUES
     );
 
 INSERT INTO
-    ItemUnit (Full_Name, Units)
+    ItemUnit (FullName, Units)
 VALUES
     ('Chemical A', 'grams'),
     ('Chemical B', 'grams'),
@@ -255,13 +257,13 @@ VALUES
     ('Glassware A', 'pieces');
 
 INSERT INTO
-    Chemicals (Catalog_number, Expiry_date)
+    Chemicals (CatalogNumber, ExpiryDate)
 VALUES
     (1001, '2024-12-31'),
     (1002, '2023-09-15');
 
 INSERT INTO
-    Equipments (Catalog_number, Maintenance_frequency)
+    Equipments (CatalogNumber, MaintenanceFrequency)
 VALUES
     (1003, 'Monthly'),
     (1004, 'Quarterly'),
@@ -271,8 +273,8 @@ INSERT INTO
     Keep (
         ShelfID,
         Number,
-        Building_name,
-        Catalog_number,
+        BuildingName,
+        CatalogNumber,
         Date
     )
 VALUES
@@ -280,7 +282,7 @@ VALUES
     (2, 3, 'Building B', 1002, '2023-06-02');
 
 INSERT INTO
-    Cabinet_In (ShelfID, Number, Building_name)
+    Cabinet_In (ShelfID, Number, BuildingName)
 VALUES
     (1, 1, 'Building A'),
     (2, 2, 'Building B'),
@@ -289,7 +291,7 @@ VALUES
     (1, 2, 'Building A');
 
 INSERT INTO
-    Room (Number, Building_name)
+    Room (Number, BuildingName)
 VALUES
     (1, 'Building A'),
     (2, 'Building B'),
@@ -298,7 +300,7 @@ VALUES
     (5, 'Building E');
 
 INSERT INTO
-    Use (Catalog_number, User_ID, Date)
+    Use (CatalogNumber, UserID, Date)
 VALUES
     (1001, 'user1', '2023-06-03'),
     (1002, 'user2', '2023-06-04'),
@@ -307,7 +309,7 @@ VALUES
     (1005, 'user5', '2023-06-07');
 
 INSERT INTO
-    LabMembers (User_ID, Name, Email, Phone)
+    LabMembers (UserID, Name, Email, Phone)
 VALUES
     (
         'user1',
@@ -341,7 +343,7 @@ VALUES
     );
 
 INSERT INTO
-    Involve (User_ID, ID, Enroll_date)
+    Involve (UserID, ID, EnrollDate)
 VALUES
     ('user1', 1, '2022-01-01'),
     ('user2', 1, '2022-02-15'),
@@ -359,7 +361,7 @@ VALUES
     (5, 'Lab 5', 'Building E, Floor 5');
 
 INSERT INTO
-    LabManager (Admin_ID, Name, Email, Phone, ID)
+    LabManager (AdminID, Name, Email, Phone, ID)
 VALUES
     (
         'admin1',
@@ -398,7 +400,7 @@ VALUES
     );
 
 INSERT INTO
-    Chemical_Waste_Dispose (Name, ID, Description, Admin_ID, Date)
+    Chemical_Waste_Dispose (Name, ID, Description, AdminID, Date)
 VALUES
     (
         'Waste A',

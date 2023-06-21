@@ -21,6 +21,7 @@
 
 <?php
 if (isset($_POST['insertPurchase'])) {
+    $CatalogNumber = $_POST['CatalogNumber'];
     addToDB(
         "CurrentStock",
         $_POST['CatalogNumber'],
@@ -32,5 +33,6 @@ if (isset($_POST['insertPurchase'])) {
         null,
         null
     );
+    $result = executePlainSQL("select QUan");
 }
 ?>
