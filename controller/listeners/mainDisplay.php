@@ -1,7 +1,8 @@
 <?php
-global $...;;
+global $currentStock;
+global $vendor;
 
-if (isse($_POST['labTag'])|| isset($_POST['insertLab'])) {
+if (isset($_POST['labTag'])|| isset($_POST['insertLab'])) {
     displayFromDB("Lab", "ALL", null);
 } elseif (isset($_POST['currentStockTag'])) {
     $value = $_POST['currentStockFilter'];

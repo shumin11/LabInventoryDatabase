@@ -8,7 +8,6 @@
               border: 5px;
               background-color: black">
     <?php
-    global $vendor;
     echo $vendor;
     ?>
 </div>

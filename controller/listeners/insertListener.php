@@ -1,4 +1,5 @@
-<?php
+    <?php
+    echo "why";
     if (
         isset($_POST['labTag'])|| isset($_POST['insertLab'])
     ) {
@@ -24,5 +25,7 @@
     ) {
         include('insertMembers.php');
     } 
+    ?>
 
-?>
+    
+  
