@@ -21,11 +21,11 @@
 <?php
 if (isset($_POST['insertVendor'])) {
     addToDB(
-        "CurrentStock",
+        "Vendors",
         $_POST['Name'],
+        $_POST['Email'],
         $_POST['Address'],
         $_POST['Phone'],
-        $_POST['Email'],
         null,
         null,
         null,
