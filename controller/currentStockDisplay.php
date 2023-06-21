@@ -23,5 +23,6 @@ background-color: #fcc307">
             echo $row[0] . "      " . $row[1] . '</br>';
         }
     }
+    disconnectFromDB();
     ?>
 </div>

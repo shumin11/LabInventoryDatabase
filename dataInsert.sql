@@ -40,7 +40,7 @@ grant
 select
     on Items to public;
 
-CREATE TABLE ItemUnit (Full Name CHAR(20) PRIMARY KEY, Unit CHAR(20));
+CREATE TABLE ItemUnit (FullName CHAR(20) PRIMARY KEY, Unit CHAR(20));
 
 grant
 select

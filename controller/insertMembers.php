@@ -40,21 +40,19 @@ if (isset($_POST['insertMembers'])) {
         $_POST['Email'],
         $_POST['Phone'],
         null,
-        null,
-        null,
         null
     );
 }
 
 if (isset($_POST['updateMember'])) {
-    if(connectToDB()){
+    if (connectToDB()) {
         executePlainSQL("UPDATE LabMembers SET 
-        UserID ='" .$_POST['newUserID']."', Name ='".$_POST['newName']."',
-        Email ='" .$_POST['newEmail']."', Phone ='".$_POST['newPhone']."',
-        WHERE UserID='".$_POST['oldUserID']."' 
-        AND Name='".$_POST['oldName']."' 
-        AND Email='".$_POST['oldEmail']."'
-        AND Phone='".$_POST['oldPhone']."'");
+        UserID ='" . $_POST['newUserID'] . "', Name ='" . $_POST['newName'] . "',
+        Email ='" . $_POST['newEmail'] . "', Phone ='" . $_POST['newPhone'] . "',
+        WHERE UserID='" . $_POST['oldUserID'] . "' 
+        AND Name='" . $_POST['oldName'] . "' 
+        AND Email='" . $_POST['oldEmail'] . "'
+        AND Phone='" . $_POST['oldPhone'] . "'");
         OCICommit($db_conn);
     }
     disconnectFromDB();

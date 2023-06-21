@@ -29,8 +29,19 @@ if (isset($_POST['insertPurchase'])) {
         $_POST['VendorName'],
         $_POST['VendorAddress'],
         $_POST['Date'],
-        $_POST['UnitPrice'],
-        null,
-        null
+        $_POST['UnitPrice']
+    );
+
+    global $db_conn;
+
+    if (connectToDB()) {
+        $result = executePlainSQL("select I.Quantity Items I where I.CatalogNumber = CatalogNumber");
+        while ($row = oci_fetch_array($result, OCI_BOTH)) {
+            $currQuantity = $row[0];
+            // you need the wrap the old name and new name values with single quotations
+            executePlainSQL("UPDATE Items SET Quantity='" . $currQuantity + 1 . "' WHERE CatalogNumber='" . $CatalogNumber . "'");
+        }
+    }
+    disconnectFromDB();
 }
 ?>

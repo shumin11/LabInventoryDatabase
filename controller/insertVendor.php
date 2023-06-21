@@ -27,8 +27,6 @@ if (isset($_POST['insertVendor'])) {
         $_POST['Address'],
         $_POST['Phone'],
         null,
-        null,
-        null,
         null
     );
 }

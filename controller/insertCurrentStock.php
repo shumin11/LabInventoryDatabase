@@ -28,16 +28,27 @@ if (isset($_POST['insertCurrentStock'])) {
         $_POST['Description'],
         $_POST['Quantity'],
         $_POST['Units'],
-        $_POST['Type'],
-        null, null
+        $_POST['Type']
     );
-} 
+    addToDB(
+        "ItemUnit",
+        $_POST['FullName'],
+        $_POST['Units'],
+        null,
+        null,
+        null,
+        null
+    );
+}
 if (isset($_POST['ExpiryDate'])) {
     addToDB(
         "Chemicals",
-        $_POST['CatalogNumber'],      
+        $_POST['CatalogNumber'],
         $_POST['ExpiryDate'],
-        null, null, null, null, null, null
+        null,
+        null,
+        null,
+        null
     );
 }
 if (isset($_POST['MaintenanceFrequency'])) {
@@ -45,7 +56,10 @@ if (isset($_POST['MaintenanceFrequency'])) {
         "Equipment",
         $_POST['CatalogNumber'],
         $_POST['MaintenanceFrequency'],
-        null, null, null, null, null, null
+        null,
+        null,
+        null,
+        null
     );
 }
 

@@ -193,14 +193,15 @@
 
 
     function displayFromDB($table, $mode, $value)
-{
-    global $db_conn;
+    {
+        global $db_conn;
 
-    if (connectToDB()) {
-        echo '<table class="dispTable" style="
+        if (connectToDB()) {
+            echo '<table class="dispTable" style="
         width: 100%;
         text-align:center;
         padding: 15px;">';
+
         switch ($table) {
             case "Lab":
                 echo '<tr><th>ID</th></tr>';
@@ -274,10 +275,11 @@
                 break;
         }
 
-        echo '</table>';
+
+            echo '</table>';
+        }
+        disconnectFromDB();
     }
-    disconnectFromDB();
-}
 
     function buttonConv($name, $value)
     {
@@ -290,7 +292,7 @@
 
 
 
-    function addToDB($table, $val1, $val2, $val3, $val4, $val5, $val6, $val7, $val8)
+    function addToDB($table, $val1, $val2, $val3, $val4, $val5, $val6)
     {
         global $db_conn;
         $plainSQL = "";
@@ -299,22 +301,32 @@
                 case "Lab":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "')";
                     break;
-                case "Current Stock":
+                case "Items":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
-                    '" . $val5 . "','" . $val6 . "','" . $val7 . "','" . $val8 . "')";
+                    '" . $val5 . "','" . $val6 . "')";
+                    break;
+                case "ItemUnit":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
+                    break;
+                case "Chemicals":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
+                    break;
+                case "Equipment":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
+                    break;
+                case "LabMembers":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                     break;
                 case "Purchase":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
                     '" . $val5 . "','" . $val6 . "')";
                     break;
-                case "Vendor":
+                case "Vendors":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                     break;
-                case "Waste":
-                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "','" . $val5 . "')";
-                    break;
-                case "Members":
-                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
+                case "Chemical_Waste_Dispose":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
+                    '" . $val5 . "')";
                     break;
                 default:
                     break;
@@ -324,6 +336,26 @@
                 echo $val1 . ' has ben added to data base';
             } else {
                 echo "Fail to add";
+            }
+        }
+        disconnectFromDB();
+    }
+
+    function deleteFromDB($table, $value)
+    {
+        global $db_conn;
+        $plainSQL = "";
+
+        if (connectToDB()) {
+            switch ($table) {
+                case "Vendor":
+                    $plainSQL = "DELETE from " . $table . "WHERE Name='" . $value . "'";
+                    break;
+                case "Purchase":
+                    $plainSQL = "DELETE from " . $table . "WHERE Name='" . $value . "'";
+                    break;
+                default:
+                    break;
             }
         }
         disconnectFromDB();
