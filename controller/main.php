@@ -203,22 +203,49 @@
         padding: 15px;">';
         switch ($table) {
             case "Lab":
-                echo '<tr><th>Player ID</th></tr>';
+                echo '<tr><th>ID</th></tr>';
+                '<tr><th>Name</th></tr>';
+                '<tr><th>Address</th></tr>';
                 break;
-            case "Coach":
-                echo '<tr><th>Coach ID</th></tr>';
+            case "Items":
+                echo '<tr><th>CatalogNumber</th></tr>';
+                '<tr><th>FullName</th></tr>';
+                '<tr><th>Description</th></tr>';
+                '<tr><th>Quantity</th></tr>';
+                '<tr><th>Type</th></tr>';
                 break;
-            case "Champion":
-                echo '<tr><th >Champion</th><th>Mainlane</th></tr>';
+            case "Purchase":
+                echo '<tr><th >CatalogNumber</th><th>Mainlane</th></tr>';
+                '<tr><th>AdminID</th></tr>';
+                '<tr><th>Name</th></tr>';
+                '<tr><th>Address</th></tr>';
+                '<tr><th>Date</th></tr>';
+                '<tr><th>UnitPrice</th></tr>';
                 break;
-            case "Championship":
-                echo '<tr><th>Championship Name</th>
-                <th>Championship Season</th>
-                <th>Championship Winner Team</th>
-                <th>Championship Bonus</th></tr>';
+            case "Vendors":
+                echo '<tr><th>Name</th>;
+                <th>Email</th>;
+                <th>Address</th>;
+                <th>Phone</th></tr>';
                 break;
+            case "Chemical_Waste_Dispose":
+                echo '<tr><th>ID</th>;
+                <th>Name</th>;
+                <th>Description</th>;
+                <th>AdminID</th></tr>;
+                <th>Date</th></tr>';
+                break;
+            case "LabMembers":
+                echo '<tr><th>UserID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>';
+             break;    
+                
             default:
-                echo '<tr><th >Team</th><th>Region</th></tr>';
+                echo '<tr><th>ID</th></tr>';
+                     '<tr><th>Name</th></tr>';
+                     '<tr><th>Address</th></tr>';
                 break;
         }
         if ($mode == "ALL") {
@@ -228,41 +255,21 @@
             $result = executePlainSQL("SELECT * FROM " . $table . " WHERE " . $mode . "='" . $value . "'");
         }
         switch ($table) {
-            case "Player":
+            case "Items":
                 while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                     // echo '<tr><td> ' . $row["PLAYERID"].'</td></tr>';
-                    echo '<tr><td> ' . buttonConv("playerButton", $row["PLAYERID"], null) . '</td></tr>';
+                    echo '<tr><td> ' . buttonConv("currentStockClick", $row["Type"]) . '</td></tr>';
                 }
                 break;
-            case "Coach":
+            case "Vendors":
                 while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr><td> ' . buttonConv("coachButton", $row["COACHNAME"], null) . '</td></tr>';
+                    echo '<tr><td> ' . buttonConv("vendorClick", $row["Name"]) . '</td></tr>';
                 }
                 break;
-            case "Champion":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    // echo $row["CHAMPIONNAME"]."</br>";
-                    echo '<tr><td> ' . buttonConv("championButton", $row["CHAMPIONNAME"], null) . ' </td><td > ' . $row["MAINLANE"] . '</td></tr>';
-                }
-                break;
-            case "Championship":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    // echo $row["CHAMPIONNAME"]."</br>";
-                    echo '<tr><td> ' . buttonConv("championshipButton", $row["CHAMPIONSHIPNAME"], $row["CHAMPIONSHIPSEASON"]) . ' </td><td > '
-                        . $row["CHAMPIONSHIPSEASON"] . '</td><td>' . $row["TEAMNAME"] . '</td><td>' . $row["BONUS"] . '</td></tr>';
-                }
-
-                break;
-                // case "Record":
-                //     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                //         echo '<tr><td> ' . buttonConv("RecordButton", $row["CHAMPIONSHIPNAME"],$row["CHAMPIONSHIPSEASON"]) . ' </td><td > ' 
-                //         . $row["CHAMPIONSHIPSEASON"] . '</td><td>'.$row["TEAMNAME"].'</td><td>'.$row["BONUS"].'</td></tr>';
-                //     }
-
-                break;
+                
             default:
                 while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr><td>' . buttonConv("teamButton", $row["TEAMNAME"], null) . '</td><td > ' . $row["REGION"] . '</td></tr>';
+                    echo '<tr><td>' . buttonConv("LabClick", $row["ID"]) . '</td><td > ';
                 }
                 break;
         }
@@ -271,6 +278,15 @@
     }
     disconnectFromDB();
 }
+
+    function buttonConv($name, $value)
+    {
+    
+    $result = '<form method="POST" action="index.php">
+    <input type ="submit" name=' . $name . ' value=' . $value . ' />  
+    </form>';
+    return $result;
+    }
 
 
 

@@ -20,13 +20,13 @@ if (isse($_POST['labTag'])|| isset($_POST['insertLab'])) {
 } elseif (isset($_POST['vendorTag'])|| isset($_POST['insertVendor'])) {
     displayFromDB("Vendors", "ALL", null);
 } elseif (isset($_POST['wasteTag'])|| isset($_POST['insertWaste'])) {
-    displayFromDB("LabMember","ALL", null);
+    displayFromDB("Chemical_Waste","ALL", null);
 } elseif (isset($_POST['memberTag'])|| isset($_POST['insertMember']) || isset($_POST['insertMembers'])) {
     displayFromDB("LabMember","ALL", null);
 } elseif (isset($_POST['currentStockClick'])) {
     $currentStock = $_POST['currentStockClick'];
     include('currentStockDisplay.php');
 } elseif (isset($_POST['vendorClick'])) {
-    $vendor = $_POST['vendor.pjp'];
+    $vendor = $_POST['vendorClick'];
     include('vendorDisplay.php');
-} elseif (isset_)
+} 
