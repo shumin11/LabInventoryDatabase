@@ -21,6 +21,7 @@
 
 <?php
 if (isset($_POST['insertPurchase'])) {
+    $CatalogNumber = $_POST['CatalogNumber'];
     addToDB(
         "Purchase",
         $_POST['CatalogNumber'],
@@ -31,6 +32,5 @@ if (isset($_POST['insertPurchase'])) {
         $_POST['UnitPrice'],
         null,
         null
-    ); 
 }
 ?>
