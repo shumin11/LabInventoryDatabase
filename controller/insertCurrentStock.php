@@ -22,15 +22,31 @@
 <?php
 if (isset($_POST['insertCurrentStock'])) {
     addToDB(
-        "CurrentStock",
-        $_POST['Type'],
-        $_POST['FullName'],
+        "Items",
         $_POST['CatalogNumber'],
+        $_POST['FullName'],
         $_POST['Description'],
         $_POST['Quantity'],
         $_POST['Units'],
+        $_POST['Type'],
+        null, null
+    );
+} 
+if (isset($_POST['ExpiryDate'])) {
+    addToDB(
+        "Chemicals",
+        $_POST['CatalogNumber'],      
         $_POST['ExpiryDate'],
-        $_POST['MaintenanceFrequency']
+        null, null, null, null, null, null
     );
 }
+if (isset($_POST['MaintenanceFrequency'])) {
+    addToDB(
+        "Equipment",
+        $_POST['CatalogNumber'],
+        $_POST['MaintenanceFrequency'],
+        null, null, null, null, null, null
+    );
+}
+
 ?>
