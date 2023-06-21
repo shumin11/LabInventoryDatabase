@@ -10,10 +10,10 @@
     // Currentstock Catagory
     } elseif (isset($_POST['currentStockTag']) || isset($_POST['insertCurrentStock']) 
     || isset($_POST['currentStockFilter']) || isset($_POST['currentStockClick'])) {
-        include('controller/CurrentStock.php');
+        include('../controller/CurrentStock.php');
     // Purchase Category
     } elseif (isset($_POST['purchaseTag']) || isset($_POST['insertPurchase']) 
     || isset($_POST['purchaseFilter'])) {
-        include('controller/Purchase.php');
+        include('../controller/Purchase.php');
     }
 ?>
