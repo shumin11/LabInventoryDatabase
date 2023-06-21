@@ -17,6 +17,6 @@
 <?php
 if (isset($_POST['insertLab'])) {
     // addTeam($_POST['teamName'], $_POST['region']);
-    addToDB("Lab", $_POST['LabID'], $_POST['Name'],$_POST['Address'], null, null, null, null, null);
+    addToDB("Lab", $_POST['LabID'], $_POST['Name'], $_POST['Address'], null, null, null);
 }
 ?>

@@ -29,9 +29,7 @@ if (isset($_POST['insertPurchase'])) {
         $_POST['VendorName'],
         $_POST['VendorAddress'],
         $_POST['Date'],
-        $_POST['UnitPrice'],
-        null,
-        null
+        $_POST['UnitPrice']
     );
 
     global $db_conn;

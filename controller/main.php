@@ -274,7 +274,7 @@
 
 
 
-    function addToDB($table, $val1, $val2, $val3, $val4, $val5, $val6, $val7, $val8)
+    function addToDB($table, $val1, $val2, $val3, $val4, $val5, $val6)
     {
         global $db_conn;
         $plainSQL = "";
@@ -286,6 +286,9 @@
                 case "Items":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
                     '" . $val5 . "','" . $val6 . "')";
+                    break;
+                case "ItemUnit":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
                     break;
                 case "Chemicals":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
@@ -320,17 +323,18 @@
         disconnectFromDB();
     }
 
-    function deleteFromDB($table, $value) {
+    function deleteFromDB($table, $value)
+    {
         global $db_conn;
         $plainSQL = "";
 
         if (connectToDB()) {
             switch ($table) {
                 case "Vendor":
-                    $plainSQL = "DELETE from " .$table. "WHERE Name='" . $value ."'";
+                    $plainSQL = "DELETE from " . $table . "WHERE Name='" . $value . "'";
                     break;
                 case "Purchase":
-                    $plainSQL = "DELETE from " .$table. "WHERE Name='" . $value ."'";
+                    $plainSQL = "DELETE from " . $table . "WHERE Name='" . $value . "'";
                     break;
                 default:
                     break;
