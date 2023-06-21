@@ -13,7 +13,6 @@
     User ID: <input type="text" name="UserID"> <br /><br />
     Phone: <input type="text" name="Phone"> <br /><br />
     <input type="submit" value="insertMembers" name="insertMembers"></p>
-    <input type="submit" value="Update" name="updateMember"></p>
 </form>
 
 <form method="POST" ,action="main.php" style="text-align: left;">
@@ -26,7 +25,6 @@
     New User ID: <input type="text" name="newUserID"> <br /><br />
     Old Phone: <input type="text" name="oldPhone"> <br /><br />
     New Phone: <input type="text" name="newPhone"> <br /><br />
-    <input type="submit" value="insertMembers" name="insertMembers"></p>
     <input type="submit" value="Update" name="updateMember"></p>
 </form>
 

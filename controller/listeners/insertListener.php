@@ -1,5 +1,5 @@
     <?php
-    echo "why";
+    
     if (
         isset($_POST['labTag'])|| isset($_POST['insertLab'])
     ) {
