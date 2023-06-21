@@ -193,84 +193,84 @@
 
 
     function displayFromDB($table, $mode, $value)
-{
-    global $db_conn;
+    {
+        global $db_conn;
 
-    if (connectToDB()) {
-        echo '<table class="dispTable" style="
+        if (connectToDB()) {
+            echo '<table class="dispTable" style="
         width: 100%;
         text-align:center;
         padding: 15px;">';
-        switch ($table) {
-            case "Lab":
-                echo '<tr><th>Player ID</th></tr>';
-                break;
-            case "Coach":
-                echo '<tr><th>Coach ID</th></tr>';
-                break;
-            case "Champion":
-                echo '<tr><th >Champion</th><th>Mainlane</th></tr>';
-                break;
-            case "Championship":
-                echo '<tr><th>Championship Name</th>
+            switch ($table) {
+                case "Lab":
+                    echo '<tr><th>Player ID</th></tr>';
+                    break;
+                case "Coach":
+                    echo '<tr><th>Coach ID</th></tr>';
+                    break;
+                case "Champion":
+                    echo '<tr><th >Champion</th><th>Mainlane</th></tr>';
+                    break;
+                case "Championship":
+                    echo '<tr><th>Championship Name</th>
                 <th>Championship Season</th>
                 <th>Championship Winner Team</th>
                 <th>Championship Bonus</th></tr>';
-                break;
-            default:
-                echo '<tr><th >Team</th><th>Region</th></tr>';
-                break;
-        }
-        if ($mode == "ALL") {
-            // echo 'mode all';
-            $result = executePlainSQL("SELECT * FROM " . $table);
-        } else {
-            $result = executePlainSQL("SELECT * FROM " . $table . " WHERE " . $mode . "='" . $value . "'");
-        }
-        switch ($table) {
-            case "Player":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    // echo '<tr><td> ' . $row["PLAYERID"].'</td></tr>';
-                    echo '<tr><td> ' . buttonConv("playerButton", $row["PLAYERID"], null) . '</td></tr>';
-                }
-                break;
-            case "Coach":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr><td> ' . buttonConv("coachButton", $row["COACHNAME"], null) . '</td></tr>';
-                }
-                break;
-            case "Champion":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    // echo $row["CHAMPIONNAME"]."</br>";
-                    echo '<tr><td> ' . buttonConv("championButton", $row["CHAMPIONNAME"], null) . ' </td><td > ' . $row["MAINLANE"] . '</td></tr>';
-                }
-                break;
-            case "Championship":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    // echo $row["CHAMPIONNAME"]."</br>";
-                    echo '<tr><td> ' . buttonConv("championshipButton", $row["CHAMPIONSHIPNAME"], $row["CHAMPIONSHIPSEASON"]) . ' </td><td > '
-                        . $row["CHAMPIONSHIPSEASON"] . '</td><td>' . $row["TEAMNAME"] . '</td><td>' . $row["BONUS"] . '</td></tr>';
-                }
+                    break;
+                default:
+                    echo '<tr><th >Team</th><th>Region</th></tr>';
+                    break;
+            }
+            if ($mode == "ALL") {
+                // echo 'mode all';
+                $result = executePlainSQL("SELECT * FROM " . $table);
+            } else {
+                $result = executePlainSQL("SELECT * FROM " . $table . " WHERE " . $mode . "='" . $value . "'");
+            }
+            switch ($table) {
+                case "Player":
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        // echo '<tr><td> ' . $row["PLAYERID"].'</td></tr>';
+                        echo '<tr><td> ' . buttonConv("playerButton", $row["PLAYERID"], null) . '</td></tr>';
+                    }
+                    break;
+                case "Coach":
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        echo '<tr><td> ' . buttonConv("coachButton", $row["COACHNAME"], null) . '</td></tr>';
+                    }
+                    break;
+                case "Champion":
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        // echo $row["CHAMPIONNAME"]."</br>";
+                        echo '<tr><td> ' . buttonConv("championButton", $row["CHAMPIONNAME"], null) . ' </td><td > ' . $row["MAINLANE"] . '</td></tr>';
+                    }
+                    break;
+                case "Championship":
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        // echo $row["CHAMPIONNAME"]."</br>";
+                        echo '<tr><td> ' . buttonConv("championshipButton", $row["CHAMPIONSHIPNAME"], $row["CHAMPIONSHIPSEASON"]) . ' </td><td > '
+                            . $row["CHAMPIONSHIPSEASON"] . '</td><td>' . $row["TEAMNAME"] . '</td><td>' . $row["BONUS"] . '</td></tr>';
+                    }
 
-                break;
-                // case "Record":
-                //     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                //         echo '<tr><td> ' . buttonConv("RecordButton", $row["CHAMPIONSHIPNAME"],$row["CHAMPIONSHIPSEASON"]) . ' </td><td > ' 
-                //         . $row["CHAMPIONSHIPSEASON"] . '</td><td>'.$row["TEAMNAME"].'</td><td>'.$row["BONUS"].'</td></tr>';
-                //     }
+                    break;
+                    // case "Record":
+                    //     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                    //         echo '<tr><td> ' . buttonConv("RecordButton", $row["CHAMPIONSHIPNAME"],$row["CHAMPIONSHIPSEASON"]) . ' </td><td > ' 
+                    //         . $row["CHAMPIONSHIPSEASON"] . '</td><td>'.$row["TEAMNAME"].'</td><td>'.$row["BONUS"].'</td></tr>';
+                    //     }
 
-                break;
-            default:
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr><td>' . buttonConv("teamButton", $row["TEAMNAME"], null) . '</td><td > ' . $row["REGION"] . '</td></tr>';
-                }
-                break;
+                    break;
+                default:
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        echo '<tr><td>' . buttonConv("teamButton", $row["TEAMNAME"], null) . '</td><td > ' . $row["REGION"] . '</td></tr>';
+                    }
+                    break;
+            }
+
+            echo '</table>';
         }
-
-        echo '</table>';
+        disconnectFromDB();
     }
-    disconnectFromDB();
-}
 
 
 
@@ -283,22 +283,29 @@
                 case "Lab":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "')";
                     break;
-                case "Current Stock":
+                case "Items":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
-                    '" . $val5 . "','" . $val6 . "','" . $val7 . "','" . $val8 . "')";
+                    '" . $val5 . "','" . $val6 . "')";
+                    break;
+                case "Chemicals":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
+                    break;
+                case "Equipment":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
+                    break;
+                case "LabMembers":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                     break;
                 case "Purchase":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
                     '" . $val5 . "','" . $val6 . "')";
                     break;
-                case "Vendor":
+                case "Vendors":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                     break;
-                case "Waste":
-                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "','" . $val5 . "')";
-                    break;
-                case "Members":
-                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
+                case "Chemical_Waste_Dispose":
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
+                    '" . $val5 . "')";
                     break;
                 default:
                     break;
