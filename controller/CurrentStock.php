@@ -10,7 +10,7 @@
             }
             while ($row = oci_fetch_array($result, OCI_BOTH)) {
                 echo '<input class="currentStockFilter" type="submit" name="currentStockFilter"
-                value=' . $row["Type"] . '/>'; 
+                value=' . $row["TYPE"] . '/>'; 
             }
             disconnectFromDB();
             ?>

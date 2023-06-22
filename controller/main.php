@@ -318,41 +318,41 @@ body {
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
                         <td> ' . $row["ID"] . '</td>
-                        <td> ' . $row["Name"] . '</td>
-                        <td>' . $row["Address"] . '</td></tr>';
+                        <td> ' . $row["NAME"] . '</td>
+                        <td>' . $row["ADDRESS"] . '</td></tr>';
                     }          
                     break;
 
                 case "Items":
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
-                        <td> ' . $row["CatalogNumber"] . '</td>
-                        <td> ' . $row["FullName"] . '</td>
-                        <td>' . $row["Description"] . '</td>
-                        <td> ' . $row["Quantity"] . '</td>
-                        <td>' .   buttonConv("currentStockClick", $row["Type"]) . '</td></tr>';
+                        <td> ' . $row["CATALOGNUMBER"] . '</td>
+                        <td> ' . $row["FULLNAME"] . '</td>
+                        <td>' . $row["DESCRIPTION"] . '</td>
+                        <td> ' . $row["QUANTITY"] . '</td>
+                        <td>' .   buttonConv("currentStockClick", $row["TYPE"]) . '</td></tr>';
                     }          
                     break;
 
                 case "Purchase":
                         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                             echo '<tr>
-                            <td> ' . $row["CatalogNumber"] . '</td>
-                            <td> ' . $row["AdminID"] . '</td>
-                            <td>' . $row["Name"] . '</td>
-                            <td> ' . $row["Address"] . '</td>
-                            <td>' . $row["PurchaseDate"] . '</td>
-                            <td> ' . $row["UnitPrice"] . '</td></tr>';
+                            <td> ' . $row["CATALOGNUMBER"] . '</td>
+                            <td> ' . $row["ADMINID"] . '</td>
+                            <td>' . $row["NAME"] . '</td>
+                            <td> ' . $row["ADDRESS"] . '</td>
+                            <td>' . $row["PURCHASEDATE"] . '</td>
+                            <td> ' . $row["UNITPRICE"] . '</td></tr>';
                         }          
                     break;
                     
                 case "Vendors":
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
-                            <td> ' . buttonConv("vendorClick", $row["Name"]) . '</td>
-                            <td> ' . $row["Email"] . '</td>
-                            <td>' . $row["Address"] . '</td>
-                            <td> ' . $row["Phone"] . '</td></tr>';
+                            <td> ' . buttonConv("vendorClick", $row["NAME"]) . '</td>
+                            <td> ' . $row["EMAIL"] . '</td>
+                            <td>' . $row["ADDRESS"] . '</td>
+                            <td> ' . $row["PHONE"] . '</td></tr>';
                     }
                     break;
                 
@@ -360,20 +360,20 @@ body {
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
                             <td> ' . $row["ID"] . '</td>
-                            <td> ' . $row["Name"] . '</td>
-                            <td> ' . $row["Description"] . '</td>
-                            <td>' . $row["AdminID"] . '</td>
-                            <td> ' . $row["UseDate"] . '</td></tr>';
+                            <td> ' . $row["NAME"] . '</td>
+                            <td> ' . $row["DESCRIPTION"] . '</td>
+                            <td>' . $row["ADMINID"] . '</td>
+                            <td> ' . $row["USEDATE"] . '</td></tr>';
                         }
                         break;
 
                 case "LabMembers":
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
-                            <td> ' . $row["UserID"] . '</td>
-                            <td> ' . $row["Name"] . '</td>
-                            <td> ' . $row["Email"] . '</td>
-                            <td> ' . $row["Phone"] . '</td></tr>';
+                            <td> ' . $row["USERID"] . '</td>
+                            <td> ' . $row["NAME"] . '</td>
+                            <td> ' . $row["EMAIL"] . '</td>
+                            <td> ' . $row["PHONE"] . '</td></tr>';
                         }
                         break;
                 
@@ -381,8 +381,8 @@ body {
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
                         <td> ' . $row["ID"] . '</td>
-                        <td> ' . $row["Name"] . '</td>
-                        <td>' . $row["Address"] . '</td></tr>';
+                        <td> ' . $row["NAME"] . '</td>
+                        <td>' . $row["ADDRESS"] . '</td></tr>';
                     }          
                     break;
                 }            
