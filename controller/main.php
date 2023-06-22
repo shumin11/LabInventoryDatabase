@@ -7,85 +7,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         .container {
-	width: 100%;
-	height: 100vh;
-}
+            width: 100%;
+            height: 100vh;
+        }
 
-.toppane {
-	width: 100%;
-	height: 80px;
-	background-color: #0606a7;
-	padding: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
+        .toppane {
+            width: 100%;
+            height: 80px;
+            background-color: #0606a7;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.top-buttons {
-	display: flex;
-	gap: 10px;
-	margin-right: 10px;
-	margin-bottom: -50px;
-	color: #98e6ee;
-	font-size: 10px;
-	border-radius: 5px;
-}
+        .top-buttons {
+            display: flex;
+            gap: 10px;
+            margin-right: 10px;
+            margin-bottom: -50px;
+            color: #98e6ee;
+            font-size: 10px;
+            border-radius: 5px;
+        }
 
-.top-buttons button {
-	padding: 10px;
-}
+        .top-buttons button {
+            padding: 10px;
+        }
 
-.leftpane {
-	width: 20%;
-	height: 100vh;
-	background-color: rgb(246, 241, 241);
-}
+        .leftpane {
+            width: 20%;
+            height: 100vh;
+            background-color: rgb(246, 241, 241);
+        }
 
-.middlepane {
-	width: 55%;
-	height: 100vh;
-	background-color: rgb(223, 226, 235);
-}
+        .middlepane {
+            width: 55%;
+            height: 100vh;
+            background-color: rgb(223, 226, 235);
+        }
 
-.rightpane {
-	width: 25%;
-	height: 100vh;
-	background-color: #bfd0df;
-}
+        .rightpane {
+            width: 25%;
+            height: 100vh;
+            background-color: #bfd0df;
+        }
 
-body {
-	margin: 0 !important;
-}
+        body {
+            margin: 0 !important;
+        }
 
-.d-flex {
-	display: flex;
-}
+        .d-flex {
+            display: flex;
+        }
 
-.sidebar {
-	position: fixed;
-	left: -0;
-	width: 20%;
-	height: 100%;
-	background-color: #101010;
-	margin-top: 0px;
-}
+        .sidebar {
+            position: fixed;
+            left: -0;
+            width: 20%;
+            height: 100%;
+            background-color: #101010;
+            margin-top: 0px;
+        }
 
-.sidebar li {
-	display: block;
-	height: 100%;
-	width: 100%;
-	line-height: 100px;
-	font-weight: 100px;
-	font-size: 10px;
-	color: rgb(15, 5, 5);
-	padding-left: 20px;
-	/* box-sizing: border-box; */
-	/* border-top: 1px solid rgba(255, 255, 255); */
-	/* border-bottom: 1px solid rgba(255, 255, 255); */
-	transition: 0.4s;
-}
+        .sidebar li {
+            display: block;
+            height: 100%;
+            width: 100%;
+            line-height: 100px;
+            font-weight: 100px;
+            font-size: 10px;
+            color: rgb(15, 5, 5);
+            padding-left: 20px;
+            /* box-sizing: border-box; */
+            /* border-top: 1px solid rgba(255, 255, 255); */
+            /* border-bottom: 1px solid rgba(255, 255, 255); */
+            transition: 0.4s;
+        }
     </style>
-    
+
     <title>Lab Inventory Management System</title>
 </head>
 
@@ -133,9 +133,9 @@ body {
 
             <div class="middlepane">
                 <?php include('listeners/filterListener.php'); ?>
-                
+
                 <?php include('listeners/mainDisplay.php'); ?>
-            
+
             </div>
 
             <div class="rightpane">
@@ -231,7 +231,7 @@ body {
 
         // Your username is ora_(CWL_ID) and the password is a(student number). For example,
         // ora_platypus is the username and a12345678 is the password.
-        $db_conn = OCILogon("ora_shumin11", "a70072111", "dbhost.students.cs.ubc.ca:1522/stu");
+        $db_conn = OCILogon("ora_mtang78", "a13159264", "dbhost.students.cs.ubc.ca:1522/stu");
 
         if ($db_conn) {
             debugAlertMessage("Database is Connected");
@@ -276,7 +276,7 @@ body {
                     <th>Type</th></tr>';
                     break;
                 case "Purchase":
-                    echo '<tr><th >CatalogNumber</th><th>Mainlane</th>
+                    echo '<tr><th >CatalogNumber</th>
                     <th>AdminID</th>
                     <th>Name</th>
                     <th>Address</th>
@@ -301,7 +301,7 @@ body {
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th></tr>';
-                    break;    
+                    break;
                 default:
                     echo '<tr><th>ID</th>
                     <th>Name</th>
@@ -309,7 +309,8 @@ body {
                     break;
             }
             if ($mode == "ALL") {
-                $result = executePlainSQL("SELECT * FROM " .$table);
+                // echo 'mode all';
+                $result = executePlainSQL("SELECT * FROM " . $table);
             } else {
                 $result = executePlainSQL("SELECT * FROM " . $table . " WHERE " . $mode . "='" . $value . "'");
             }
@@ -320,7 +321,7 @@ body {
                         <td> ' . $row["ID"] . '</td>
                         <td> ' . $row["NAME"] . '</td>
                         <td>' . $row["ADDRESS"] . '</td></tr>';
-                    }          
+                    }
                     break;
 
                 case "Items":
@@ -331,21 +332,21 @@ body {
                         <td>' . $row["DESCRIPTION"] . '</td>
                         <td> ' . $row["QUANTITY"] . '</td>
                         <td>' .   buttonConv("currentStockClick", $row["TYPE"]) . '</td></tr>';
-                    }          
+                    }
                     break;
 
                 case "Purchase":
-                        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                            echo '<tr>
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        echo '<tr>
                             <td> ' . $row["CATALOGNUMBER"] . '</td>
                             <td> ' . $row["ADMINID"] . '</td>
                             <td>' . $row["NAME"] . '</td>
                             <td> ' . $row["ADDRESS"] . '</td>
                             <td>' . $row["PURCHASEDATE"] . '</td>
                             <td> ' . $row["UNITPRICE"] . '</td></tr>';
-                        }          
+                    }
                     break;
-                    
+
                 case "Vendors":
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
@@ -355,7 +356,7 @@ body {
                             <td> ' . $row["PHONE"] . '</td></tr>';
                     }
                     break;
-                
+
                 case "Chemical_Waste_Dispose":
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
@@ -364,8 +365,8 @@ body {
                             <td> ' . $row["DESCRIPTION"] . '</td>
                             <td>' . $row["ADMINID"] . '</td>
                             <td> ' . $row["USEDATE"] . '</td></tr>';
-                        }
-                        break;
+                    }
+                    break;
 
                 case "LabMembers":
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
@@ -374,20 +375,20 @@ body {
                             <td> ' . $row["NAME"] . '</td>
                             <td> ' . $row["EMAIL"] . '</td>
                             <td> ' . $row["PHONE"] . '</td></tr>';
-                        }
-                        break;
-                
+                    }
+                    break;
+
                 default:
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
                         <td> ' . $row["ID"] . '</td>
                         <td> ' . $row["NAME"] . '</td>
                         <td>' . $row["ADDRESS"] . '</td></tr>';
-                    }          
+                    }
                     break;
-                }            
-                echo '</table>';
-            } else {
+            }
+            echo '</table>';
+        } else {
             echo "Notconnected";
         }
         disconnectFromDB();
@@ -395,11 +396,11 @@ body {
 
     function buttonConv($name, $value)
     {
-    
-    $result = '<form method="POST" action="main.php">
+
+        $result = '<form method="POST" action="main.php">
     <input type ="submit" name=' . $name . ' value=' . $value . ' />  
     </form>';
-    return $result;
+        return $result;
     }
 
 

@@ -23,18 +23,22 @@
                                    WHERE Purchase.Name ='" . $vendor . "' AND
                                    Purchase.CatalogNumber = Items.CatalogNumber");
         while ($row = oci_fetch_array($result, OCI_BOTH)) {
-            echo '<br>' . $row[1] . '</br>';
+            echo "<br>" . $row[0] . "<br>";
         }
+
+        echo "<br><br>";
 
         echo 'Number of purchases made from this vendor: </br>';
         $result = executePlainSQL("SELECT Purchase.Name, COUNT(Purchase.Name)
                                    FROM Purchase
                                    GROUP BY Purchase.Name");
         while ($row = oci_fetch_array($result, OCI_BOTH)) {
-            echo '<br>' . $row[1] . 'items were purchased from' . $row[0] . '</br>';
+            echo '<br> ' . $row[1] . ' items were purchased from ' . $row[0] . '</br>';
         }
 
-        echo 'I do not know what to say here..</br>';
+        echo "<br><br>";
+
+        echo 'Popular Vendors:<br>';
         $result = executePlainSQL("SELECT Purchase.Name
                                    FROM Purchase
                                    GROUP BY Purchase.Name
