@@ -5,15 +5,17 @@
     ) {
         include('insertLab.php');
     } elseif (
-        isset($_POST['currentStockTag'])|| isset($_POST['insertCurrentStock'])
+        isset($_POST['currentStockTag'])|| isset($_POST['insertCurrentStock']) 
+        || isset($_POST['currentStockFilter']) || isset($_POST['currentStockClick'])
     ) {
         include('insertCurrentStock.php');
     } elseif (
-        isset($_POST['purchaseTag'])|| isset($_POST['insertPurchase'])
+        isset($_POST['purchaseTag'])|| isset($_POST['insertPurchase']) || isset($_POST['purchaseFilter'])
     ) {
         include('insertPurchase.php');
     } elseif (
         isset($_POST['vendorTag'])|| isset($_POST['insertVendor'])
+        || isset($_POST['vendorClick']) || isset($_POST['deleteVendor'])
     ) {
         include('insertVendor.php');
     } elseif (
