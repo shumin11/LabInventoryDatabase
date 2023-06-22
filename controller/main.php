@@ -133,14 +133,13 @@ body {
 
             <div class="middlepane">
                 <?php include('listeners/filterListener.php'); ?>
-                <?PHP include('listeners/mainDisplay.php'); ?>
+                
+                <?php include('listeners/mainDisplay.php'); ?>
             
             </div>
 
             <div class="rightpane">
-                <?php
-                include('listeners/insertListener.php');
-                ?>
+                <?php include('listeners/insertListener.php'); ?>
             </div>
         </div>
     </div>
@@ -259,139 +258,136 @@ body {
         global $db_conn;
         if (connectToDB()) {
             echo '<table class="dispTable" style="
-        width: 100%;
-        text-align:center;
-        padding: 15px;">';
+                   width: 100%;
+                   text-align:center;
+                   padding: 15px;">';
 
-        switch ($table) {
-            case "Lab":
-                echo '<tr><th>ID</th>
-                <th>Name</th>
-                <th>Address</th></tr>';
-                break;
-            case "Items":
-                echo '<tr><th>CatalogNumber</th>
-                <th>FullName</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Type</th></tr>';
-                break;
-            case "Purchase":
-                echo '<tr><th >CatalogNumber</th><th>Mainlane</th>
-                <th>AdminID</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>PurchaseDate</th>
-                <th>UnitPrice</th></tr>';
-                break;
-            case "Vendors":
-                echo '<tr><th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Phone</th></tr>';
-                break;
-            case "Chemical_Waste_Dispose":
-                echo '<tr><th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>AdminID</th>
-                <th>Date</th></tr>';
-                break;
-            case "LabMembers":
-                echo '<tr><th>UserID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th></tr>';
-             break;    
-                
-            default:
-                echo '<tr><th>ID</th>
-                      <th>Name</th>
-                      <th>Address</th></tr>';
-                break;
-        }
-        if ($mode == "ALL") {
-            // echo 'mode all';
-            $result = executePlainSQL("SELECT * FROM " . $table);
-        } else {
-            $result = executePlainSQL("SELECT * FROM " . $table . " WHERE " . $mode . "='" . $value . "'");
-        }
-        switch ($table) {
-            case "Lab":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr>
-                    <td> ' . $row["ID"] . '</td>
-                    <td> ' . $row["Name"] . '</td>
-                    <td>' . $row["Address"] . '</td></tr>';
-                }          
-                break;
+            switch ($table) {
+                case "Lab":
+                    echo '<tr><th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th></tr>';
+                    break;
+                case "Items":
+                    echo '<tr><th>CatalogNumber</th>
+                    <th>FullName</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Type</th></tr>';
+                    break;
+                case "Purchase":
+                    echo '<tr><th >CatalogNumber</th><th>Mainlane</th>
+                    <th>AdminID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>PurchaseDate</th>
+                    <th>UnitPrice</th></tr>';
+                    break;
+                case "Vendors":
+                    echo '<tr><th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Phone</th></tr>';
+                    break;
+                case "Chemical_Waste_Dispose":
+                    echo '<tr><th>ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>AdminID</th>
+                    <th>UseDate</th></tr>';
+                    break;
+                case "LabMembers":
+                    echo '<tr><th>UserID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th></tr>';
+                    break;    
+                default:
+                    echo '<tr><th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th></tr>';
+                    break;
+            }
+            if ($mode == "ALL") {
+                $result = executePlainSQL("SELECT * FROM " .$table);
+            } else {
+                $result = executePlainSQL("SELECT * FROM " . $table . " WHERE " . $mode . "='" . $value . "'");
+            }
+            switch ($table) {
+                case "Lab":
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        echo '<tr>
+                        <td> ' . $row["ID"] . '</td>
+                        <td> ' . $row["Name"] . '</td>
+                        <td>' . $row["Address"] . '</td></tr>';
+                    }          
+                    break;
 
-            case "Items":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr>
-                    <td> ' . $row["CatalogNumber"] . '</td>
-                    <td> ' . $row["FullName"] . '</td>
-                    <td>' . $row["Description"] . '</td>
-                    <td> ' . $row["Quantity"] . '</td>
-                    <td>' .   buttonConv("currentStockClick", $row["Type"]) . '</td></tr>';
-                }          
-                break;
-
-            case "Purchase":
+                case "Items":
                     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
                         echo '<tr>
                         <td> ' . $row["CatalogNumber"] . '</td>
-                        <td> ' . $row["AdminID"] . '</td>
-                        <td>' . $row["Name"] . '</td>
-                        <td> ' . $row["Address"] . '</td>
-                        <td>' . $row["PurchaseDate"] . '</td>
-                        <td> ' . $row["UnitPrice"] . '</td></tr>';
+                        <td> ' . $row["FullName"] . '</td>
+                        <td>' . $row["Description"] . '</td>
+                        <td> ' . $row["Quantity"] . '</td>
+                        <td>' .   buttonConv("currentStockClick", $row["Type"]) . '</td></tr>';
                     }          
-                 break;
-                
-            case "Vendors":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr>
-                        <td> ' . buttonConv("vendorClick", $row["Name"]) . '</td>
-                        <td> ' . $row["Email"] . '</td>
-                        <td>' . $row["Address"] . '</td>
-                        <td> ' . $row["Phone"] . '</td></tr>';
-                }
-                break;
-            
-            case "Chemical_Waste_Dispose":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr>
-                        <td> ' . $row["ID"] . '</td>
-                        <td> ' . $row["Name"] . '</td>
-                        <td> ' . $row["Description"] . '</td>
-                        <td>' . $row["AdminID"] . '</td>
-                        <td> ' . $row["Date"] . '</td></tr>';
-                    }
                     break;
 
-            case "LabMembers":
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr>
-                        <td> ' . $row["UserID"] . '</td>
-                        <td> ' . $row["Name"] . '</td>
-                        <td> ' . $row["Email"] . '</td>
-                        <td> ' . $row["Phone"] . '</td></tr>';
+                case "Purchase":
+                        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                            echo '<tr>
+                            <td> ' . $row["CatalogNumber"] . '</td>
+                            <td> ' . $row["AdminID"] . '</td>
+                            <td>' . $row["Name"] . '</td>
+                            <td> ' . $row["Address"] . '</td>
+                            <td>' . $row["PurchaseDate"] . '</td>
+                            <td> ' . $row["UnitPrice"] . '</td></tr>';
+                        }          
+                    break;
+                    
+                case "Vendors":
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        echo '<tr>
+                            <td> ' . buttonConv("vendorClick", $row["Name"]) . '</td>
+                            <td> ' . $row["Email"] . '</td>
+                            <td>' . $row["Address"] . '</td>
+                            <td> ' . $row["Phone"] . '</td></tr>';
                     }
                     break;
-            
-            default:
-                while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                    echo '<tr>
-                    <td> ' . $row["ID"] . '</td>
-                    <td> ' . $row["Name"] . '</td>
-                    <td>' . $row["Address"] . '</td></tr>';
-                }          
-                break;
-        }
-        
-            echo '</table>';
-        } else {
+                
+                case "Chemical_Waste_Dispose":
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        echo '<tr>
+                            <td> ' . $row["ID"] . '</td>
+                            <td> ' . $row["Name"] . '</td>
+                            <td> ' . $row["Description"] . '</td>
+                            <td>' . $row["AdminID"] . '</td>
+                            <td> ' . $row["UseDate"] . '</td></tr>';
+                        }
+                        break;
+
+                case "LabMembers":
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        echo '<tr>
+                            <td> ' . $row["UserID"] . '</td>
+                            <td> ' . $row["Name"] . '</td>
+                            <td> ' . $row["Email"] . '</td>
+                            <td> ' . $row["Phone"] . '</td></tr>';
+                        }
+                        break;
+                
+                default:
+                    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+                        echo '<tr>
+                        <td> ' . $row["ID"] . '</td>
+                        <td> ' . $row["Name"] . '</td>
+                        <td>' . $row["Address"] . '</td></tr>';
+                    }          
+                    break;
+                }            
+                echo '</table>';
+            } else {
             echo "Notconnected";
         }
         disconnectFromDB();
@@ -400,7 +396,7 @@ body {
     function buttonConv($name, $value)
     {
     
-    $result = '<form method="POST" action="index.php">
+    $result = '<form method="POST" action="main.php">
     <input type ="submit" name=' . $name . ' value=' . $value . ' />  
     </form>';
     return $result;
