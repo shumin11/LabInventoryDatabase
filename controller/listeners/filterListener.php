@@ -2,9 +2,9 @@
     //Lab, Vendor, Waste, and Member categories don't have filters
     if (isset($_POST['labTag']) || isset($_POST['insertLab'])
     || isset($_POST['vendorTag']) || isset($_POST['insertVendor']) 
-    || isset($_POST['vendorClick']) || isset($_POST['deleteVendor'])
+    || isset($_POST['vendorClick']) 
     || isset($_POST['wasteTag']) || isset($_POST['insertWaste'])
-    || isset($_POST['memberTag']) || isset($_POST['insertMember']) 
+    || isset($_POST['memberTag']) || isset($_POST['insertMembers']) 
     || isset($_POST['updateMember'])) {
         echo'<div></div>';
     // Currentstock Catagory

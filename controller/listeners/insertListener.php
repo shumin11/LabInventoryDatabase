@@ -15,7 +15,7 @@
         include('insertPurchase.php');
     } elseif (
         isset($_POST['vendorTag'])|| isset($_POST['insertVendor'])
-        || isset($_POST['vendorClick']) || isset($_POST['deleteVendor'])
+        || isset($_POST['vendorClick']) || isset($_GET['deleteVendor'])
     ) {
         include('insertVendor.php');
     } elseif (
@@ -23,7 +23,7 @@
     ) {
         include('insertWaste.php');
     } elseif (
-        isset($_POST['memberTag'])|| isset($_POST['insertMember'])
+        isset($_POST['memberTag'])|| isset($_POST['insertMembers']) || isset($_POST['updateMembers'])
     ) {
         include('insertMembers.php');
     } 

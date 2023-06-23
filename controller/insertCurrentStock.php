@@ -9,8 +9,8 @@
 <form method="POST" ,action="main.php" style="text-align: left;">
     <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
     Type: <input type="text" name="Type"> <br /><br />
-    Full Name: <input type="text" name="FullName"> <br /><br />
-    Catalog number: <input type="text" name="CatalogNumber"> <br /><br />
+    Full Name *: <input type="text" name="FullName"> <br /><br />
+    Catalog number *: <input type="text" name="CatalogNumber"> <br /><br />
     Description: <input type="text" name="Description"> <br /><br />
     Quantity: <input type="text" name="Quantity"> <br /><br />
     Units: <input type="text" name="Units"> <br /><br />
@@ -27,9 +27,10 @@ if (isset($_POST['insertCurrentStock'])) {
         $_POST['FullName'],
         $_POST['Description'],
         $_POST['Quantity'],
-        $_POST['Units'],
-        $_POST['Type']
+        $_POST['Type'],
+        null,
     );
+
     addToDB(
         "ItemUnit",
         $_POST['FullName'],
@@ -39,8 +40,7 @@ if (isset($_POST['insertCurrentStock'])) {
         null,
         null
     );
-}
-if (isset($_POST['ExpiryDate'])) {
+
     addToDB(
         "Chemicals",
         $_POST['CatalogNumber'],
@@ -50,10 +50,9 @@ if (isset($_POST['ExpiryDate'])) {
         null,
         null
     );
-}
-if (isset($_POST['MaintenanceFrequency'])) {
+
     addToDB(
-        "Equipment",
+        "Equipments",
         $_POST['CatalogNumber'],
         $_POST['MaintenanceFrequency'],
         null,

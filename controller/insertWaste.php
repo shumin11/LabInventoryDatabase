@@ -23,12 +23,15 @@
 if (isset($_POST['insertWaste'])) {
     addToDB(
         "Chemical_Waste_Dispose",
-        $_POST['Name'],
         $_POST['ID'],
+        $_POST['Name'],
         $_POST['Description'],
         $_POST['AdminID'],
         $_POST['Date'],
-        null
+        null,
     );
 }
+
+
+
 ?>

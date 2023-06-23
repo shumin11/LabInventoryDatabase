@@ -14,7 +14,7 @@
         .toppane {
             width: 100%;
             height: 80px;
-            background-color: #0606a7;
+            background-color: #547980;
             padding: 10px;
             display: flex;
             justify-content: space-between;
@@ -38,19 +38,19 @@
         .leftpane {
             width: 20%;
             height: 100vh;
-            background-color: rgb(246, 241, 241);
+            background-color: #9DE0AD;                      
         }
 
         .middlepane {
             width: 55%;
             height: 100vh;
-            background-color: rgb(223, 226, 235);
+            background-color: #e5fcc2;
         }
 
         .rightpane {
             width: 25%;
             height: 100vh;
-            background-color: #bfd0df;
+            background-color: #e5fcc2;
         }
 
         body {
@@ -61,16 +61,9 @@
             display: flex;
         }
 
-        .sidebar {
-            position: fixed;
-            left: -0;
-            width: 20%;
-            height: 100%;
-            background-color: #101010;
-            margin-top: 0px;
-        }
 
-        .sidebar li {
+
+        .leftpane li {
             display: block;
             height: 100%;
             width: 100%;
@@ -100,7 +93,7 @@
 
         <div class="d-flex">
             <div class="leftpane">
-                <div class="sidebar">
+                
 
 
                     <form method="POST" action="main.php">
@@ -128,13 +121,16 @@
                             <input type="submit" name="memberTag" value="MEMBERS" , style="font-size: 25px;" />
                         </li>
                     </form>
-                </div>
+                
             </div>
 
             <div class="middlepane">
-                <?php include('listeners/filterListener.php'); ?>
 
+
+                <?php include('listeners/filterListener.php'); ?>
+                
                 <?php include('listeners/mainDisplay.php'); ?>
+
 
             </div>
 
@@ -231,7 +227,7 @@
 
         // Your username is ora_(CWL_ID) and the password is a(student number). For example,
         // ora_platypus is the username and a12345678 is the password.
-        $db_conn = OCILogon("ora_mtang78", "a13159264", "dbhost.students.cs.ubc.ca:1522/stu");
+        $db_conn = OCILogon("ora_shumin11", "a70072111", "dbhost.students.cs.ubc.ca:1522/stu");
 
         if ($db_conn) {
             debugAlertMessage("Database is Connected");
@@ -263,20 +259,32 @@
                    padding: 15px;">';
 
             switch ($table) {
-                case "Lab":
-                    echo '<tr><th>ID</th>
+                case "Lab": 
+                    echo '<p style="
+                    color:black; 
+                    font-size: 20px;
+                    text-align:center;"> LAB </p>
+                    <tr><th>ID</th>
                     <th>Name</th>
                     <th>Address</th></tr>';
                     break;
                 case "Items":
-                    echo '<tr><th>CatalogNumber</th>
+                    echo '<p style="
+                    color:black; 
+                    font-size: 20px;
+                    text-align:center;"> CURRENT STOCK </p>
+                    <tr><th>CatalogNumber</th>
                     <th>FullName</th>
                     <th>Description</th>
                     <th>Quantity</th>
                     <th>Type</th></tr>';
                     break;
                 case "Purchase":
-                    echo '<tr><th >CatalogNumber</th>
+                    echo '<p style="
+                    color:black; 
+                    font-size: 20px;
+                    text-align:center;"> PURCHASE </p>
+                    <tr><th >CatalogNumber</th>
                     <th>AdminID</th>
                     <th>Name</th>
                     <th>Address</th>
@@ -284,25 +292,37 @@
                     <th>UnitPrice</th></tr>';
                     break;
                 case "Vendors":
-                    echo '<tr><th>Name</th>
+                    echo '<p style="
+                    color:black; 
+                    font-size: 20px;
+                    text-align:center;"> VENDORS </p>
+                    <tr><th>Name</th>
                     <th>Email</th>
                     <th>Address</th>
                     <th>Phone</th></tr>';
                     break;
                 case "Chemical_Waste_Dispose":
-                    echo '<tr><th>ID</th>
+                    echo '<p style="
+                    color:black; 
+                    font-size: 20px;
+                    text-align:center;"> WASTE </p>
+                    <tr><th>ID</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>AdminID</th>
                     <th>UseDate</th></tr>';
                     break;
                 case "LabMembers":
-                    echo '<tr><th>UserID</th>
+                    echo '<p style="
+                    color:black; 
+                    font-size: 20px;
+                    text-align:center;"> LAB MEMBERS </p>
+                    <tr><th>UserID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Phone</th></tr>';
                     break;
-                default:
+                default:               
                     echo '<tr><th>ID</th>
                     <th>Name</th>
                     <th>Address</th></tr>';
@@ -415,38 +435,40 @@
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "')";
                     break;
                 case "Items":
-                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
-                    '" . $val5 . "','" . $val6 . "')";
+                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "', '" . $val4 . "',
+                    '" . $val5 . "')";
                     break;
                 case "ItemUnit":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
                     break;
                 case "Chemicals":
-                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
+                    $plainSQL = "INSERT into " . $table . " values('"  . $val1 . "', TO_DATE('" . $val2 . "', 'YYYY-MM-DD'))";
                     break;
-                case "Equipment":
+                case "Equipments":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
                     break;
                 case "LabMembers":
+             
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                     break;
                 case "Purchase":
-                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
-                    '" . $val5 . "','" . $val6 . "')";
+                    $plainSQL = "INSERT INTO " . $table . " VALUES ('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "', TO_DATE('" . $val5 . "', 'YYYY-MM-DD'), '" . $val6 . "')";
                     break;
                 case "Vendors":
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                     break;
                 case "Chemical_Waste_Dispose":
-                    $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "',
-                    '" . $val5 . "')";
+                   
+                    $plainSQL = "INSERT INTO " . $table . " VALUES ('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "', TO_DATE('" . $val5 . "', 'YYYY-MM-DD'))";
                     break;
                 default:
                     break;
             }
             if (executePlainSQL($plainSQL)) {
                 OCICommit($db_conn);
-                echo $val1 . ' has ben added to data base';
+                echo '<br>' . $val1 . ' has been added to the database. Please refresh the page by clicking ' . $table . ' button to get updated table.
+                <br>';
+
             } else {
                 echo "Fail to add";
             }
@@ -461,16 +483,26 @@
 
         if (connectToDB()) {
             switch ($table) {
-                case "Vendor":
-                    $plainSQL = "DELETE from " . $table . "WHERE Name='" . $value . "'";
+                case "Vendors":
+                    
+                    $plainSQL = "DELETE from " . $table . " WHERE Name='" . $value . "'";
                     break;
                 case "Purchase":
-                    $plainSQL = "DELETE from " . $table . "WHERE Name='" . $value . "'";
+                    $plainSQL = "DELETE from " . $table . " WHERE Name='" . $value . "'";
                     break;
                 default:
                     break;
             }
+            if (executePlainSQL($plainSQL)) {
+               
+                if (OCICommit($db_conn)) {
+                    echo  '<br>' . $value . " in " . $table . "has been successfully DELETED! <br>";
+                };
+                
+            }
+
         }
+
         disconnectFromDB();
     }
 

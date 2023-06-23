@@ -22,12 +22,12 @@ if (isset($_POST['labTag']) || isset($_POST['insertLab'])) {
     displayFromDB("Vendors", "ALL", null);
 } elseif (isset($_POST['wasteTag']) || isset($_POST['insertWaste'])) {
     displayFromDB("Chemical_Waste_Dispose", "ALL", null);
-} elseif (isset($_POST['memberTag']) || isset($_POST['insertMember']) || isset($_POST['insertMembers'])) {
+} elseif (isset($_POST['memberTag']) || isset($_POST['updateMembers']) || isset($_POST['insertMembers'])) {
     displayFromDB("LabMembers", "ALL", null);
 } elseif (isset($_POST['currentStockClick'])) {
     $currentStock = $_POST['currentStockClick'];
     include('currentStockDisplay.php');
-} elseif (isset($_POST['vendorClick'])) {
+} elseif (isset($_POST['vendorClick']) || isset($_POST['delete'])) {
     $vendor = $_POST['vendorClick'];
     include('vendorDisplay.php');
 }
