@@ -493,7 +493,7 @@
             if (executePlainSQL($plainSQL)) {
                
                 if (OCICommit($db_conn)) {
-                    echo  '<br>' . $value . " in " . $table . "has been successfully DELETED! <br>";
+                    echo  '<br>' . $value . " in " . $table . " has been successfully DELETED! <br>";
                 };
                 
             }

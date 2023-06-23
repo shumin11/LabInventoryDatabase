@@ -48,7 +48,8 @@ select
 
 CREATE TABLE Chemicals (
     CatalogNumber INTEGER PRIMARY KEY,
-    ExpiryDate DATE
+    ExpiryDate DATE,
+    FOREIGN KEY (CatalogNumber) REFERENCES Items
 );
 
 grant
@@ -57,7 +58,8 @@ select
 
 CREATE TABLE Equipments (
     CatalogNumber INTEGER PRIMARY KEY,
-    MaintenanceFrequency CHAR(20)
+    MaintenanceFrequency CHAR(20),
+    FOREIGN KEY (CatalogNumber) REFERENCES Items
 );
 
 grant
