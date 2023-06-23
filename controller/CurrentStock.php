@@ -2,7 +2,7 @@
     <div class="filter">
         <form method="POST" action="main.php">
             <label> FILTER </label>
-            <input class = "currentStockFilter" type="submit" name="currentStockFilter" value="ALL" />
+            <input class="currentStockFilter" type="submit" name="currentStockFilter" value="ALL" />
             <?php
             if (connectToDB()) {
                 global $db_conn;
@@ -10,7 +10,7 @@
             }
             while ($row = oci_fetch_array($result, OCI_BOTH)) {
                 echo '<input class="currentStockFilter" type="submit" name="currentStockFilter"
-                value=' . $row["TYPE"] . '/>'; 
+                value=' . $row["TYPE"] . '/>';
             }
             disconnectFromDB();
             ?>

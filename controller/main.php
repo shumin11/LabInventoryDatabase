@@ -38,7 +38,7 @@
         .leftpane {
             width: 20%;
             height: 100vh;
-            background-color: #9DE0AD;                      
+            background-color: #9DE0AD;
         }
 
         .middlepane {
@@ -91,41 +91,41 @@
 
         <div class="d-flex">
             <div class="leftpane">
-                
 
 
-                    <form method="POST" action="main.php">
-                        <li>
-                            <input type="submit" name="labTag" value="Lab" , style="font-size: 25px;" />
-                        </li>
 
-                        <li>
-                            <input type="submit" name="currentStockTag" value="CURRENT STOCK" , style="font-size: 25px;" />
-                        </li>
+                <form method="POST" action="main.php">
+                    <li>
+                        <input type="submit" name="labTag" value="Lab" , style="font-size: 25px;" />
+                    </li>
 
-                        <li>
-                            <input type="submit" name="purchaseTag" value="PURCHASE" , style="font-size: 25px;" />
-                        </li>
+                    <li>
+                        <input type="submit" name="currentStockTag" value="CURRENT STOCK" , style="font-size: 25px;" />
+                    </li>
 
-                        <li>
-                            <input type="submit" name="vendorTag" value="VENDOR" , style="font-size: 25px;" />
-                        </li>
+                    <li>
+                        <input type="submit" name="purchaseTag" value="PURCHASE" , style="font-size: 25px;" />
+                    </li>
 
-                        <li>
-                            <input type="submit" name="wasteTag" value="WASTE" , style="font-size: 25px;" />
-                        </li>
+                    <li>
+                        <input type="submit" name="vendorTag" value="VENDOR" , style="font-size: 25px;" />
+                    </li>
 
-                        <li>
-                            <input type="submit" name="memberTag" value="MEMBERS" , style="font-size: 25px;" />
-                        </li>
-                    </form>
-                
+                    <li>
+                        <input type="submit" name="wasteTag" value="WASTE" , style="font-size: 25px;" />
+                    </li>
+
+                    <li>
+                        <input type="submit" name="memberTag" value="MEMBERS" , style="font-size: 25px;" />
+                    </li>
+                </form>
+
             </div>
 
             <div class="middlepane">
 
                 <?php include('listeners/filterListener.php'); ?>
-                
+
                 <?php include('listeners/mainDisplay.php'); ?>
 
 
@@ -256,7 +256,7 @@
                    padding: 15px;">';
 
             switch ($table) {
-                case "Lab": 
+                case "Lab":
                     echo '<p style="
                     color:black; 
                     font-size: 20px;
@@ -319,14 +319,14 @@
                     <th>Email</th>
                     <th>Phone</th></tr>';
                     break;
-                default:               
+                default:
                     echo '<tr><th>ID</th>
                     <th>Name</th>
                     <th>Address</th></tr>';
                     break;
             }
             if ($mode == "ALL") {
-                
+
                 $result = executePlainSQL("SELECT * FROM " . $table);
             } else {
                 $result = executePlainSQL("SELECT * FROM " . $table . " WHERE " . $mode . "='" . $value . "'");
@@ -445,7 +445,7 @@
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "')";
                     break;
                 case "LabMembers":
-             
+
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                     break;
                 case "Purchase":
@@ -455,7 +455,7 @@
                     $plainSQL = "INSERT into " . $table . " values('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "')";
                     break;
                 case "Chemical_Waste_Dispose":
-                   
+
                     $plainSQL = "INSERT INTO " . $table . " VALUES ('" . $val1 . "','" . $val2 . "','" . $val3 . "','" . $val4 . "', TO_DATE('" . $val5 . "', 'YYYY-MM-DD'))";
                     break;
                 default:
@@ -465,7 +465,6 @@
                 OCICommit($db_conn);
                 echo '<br>' . $val1 . ' has been added to the database. Please refresh the page by clicking ' . $table . ' button to get updated table.
                 <br>';
-
             } else {
                 echo "Fail to add";
             }
@@ -481,7 +480,7 @@
         if (connectToDB()) {
             switch ($table) {
                 case "Vendors":
-                    
+
                     $plainSQL = "DELETE from " . $table . " WHERE Name='" . $value . "'";
                     break;
                 case "Purchase":
@@ -491,13 +490,11 @@
                     break;
             }
             if (executePlainSQL($plainSQL)) {
-               
+
                 if (OCICommit($db_conn)) {
                     echo  '<br>' . $value . " in " . $table . " has been successfully DELETED! <br>";
                 };
-                
             }
-
         }
 
         disconnectFromDB();

@@ -12,7 +12,7 @@
     ?>
 </div>
 
-<div style = "text-align: center">
+<div style="text-align: center">
     <?php
     global $db_conn;
 
@@ -26,8 +26,8 @@
                                    FROM Items, Purchase
                                    WHERE Purchase.Name ='" . $vendor . "' AND
                                    Purchase.CatalogNumber = Items.CatalogNumber");
-        while ($row = oci_fetch_array($result, OCI_BOTH)) {       
-            echo "<br>" . $row[0];        
+        while ($row = oci_fetch_array($result, OCI_BOTH)) {
+            echo "<br>" . $row[0];
         }
 
         echo "<br><br>";
@@ -76,7 +76,6 @@
         }
 
         echo "<br><br>";
-
     }
     ?>
 

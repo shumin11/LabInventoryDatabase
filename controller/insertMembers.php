@@ -26,7 +26,7 @@
     Old Phone: <input type="text" name="oldPhone"> <br /><br />
     New Phone: <input type="text" name="newPhone"> <br /><br />
     <input type="submit" value="Update" name="updateMembers"></p>
-</form> 
+</form>
 
 
 <?php
@@ -45,7 +45,7 @@ if (isset($_POST['insertMembers'])) {
 
 if (isset($_POST['updateMembers'])) {
     if (connectToDB()) {
-       
+
         $plainSQL = "UPDATE LabMembers SET 
         UserID ='" . $_POST['newUserID'] . "', Name ='" . $_POST['newName'] . "',
         Email ='" . $_POST['newEmail'] . "', Phone ='" . $_POST['newPhone'] . "'
@@ -58,12 +58,11 @@ if (isset($_POST['updateMembers'])) {
             OCICommit($db_conn);
             echo '<br> The LAB MEMBERS table has been updated. Please refresh the page by clicking MEMBERS button to get updated table.
             <br>';
-    
         } else {
             echo "Fail to add";
         }
     }
-    
+
 
     disconnectFromDB();
 }

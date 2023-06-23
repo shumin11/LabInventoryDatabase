@@ -33,21 +33,20 @@ if (isset($_POST['insertPurchase'])) {
         $_POST['UnitPrice'],
     );
 
-    
+
     if (connectToDB()) {
-            
+
         $result = executePlainSQL("select I.Quantity from Items I where I.CatalogNumber = '" . $CatalogNumber . "'");
         while ($row = oci_fetch_array($result, OCI_BOTH)) {
             $currQuantity = $row[0] + 1;
-            
+
             // you need the wrap the old name and new name values with single quotations
             executePlainSQL("UPDATE Items SET Quantity='" . $currQuantity . "' WHERE CatalogNumber='" . $CatalogNumber . "'");
             OCICommit($db_conn);
             echo '<br>' . $CatalogNumber . " : current quantity has been updated to " . $currQuantity;
             echo '<br> The Items table has also been updated. Please go to the CurrentStock Page.
             <br>';
-        }   
-
+        }
     }
     disconnectFromDB();
 }

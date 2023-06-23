@@ -11,7 +11,7 @@
     echo "Low Stock Item Type";
     ?>
 </div>
-<div style = "text-align: center; font-weight: bold">
+<div style="text-align: center; font-weight: bold">
     <?php
     global $db_conn;
 

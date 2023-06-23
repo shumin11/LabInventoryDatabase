@@ -1,32 +1,32 @@
     <?php
-    
+
     if (
-        isset($_POST['labTag'])|| isset($_POST['insertLab'])
+        isset($_POST['labTag']) || isset($_POST['insertLab'])
     ) {
         include('insertLab.php');
     } elseif (
-        isset($_POST['currentStockTag'])|| isset($_POST['insertCurrentStock']) 
+        isset($_POST['currentStockTag']) || isset($_POST['insertCurrentStock'])
         || isset($_POST['currentStockFilter']) || isset($_POST['currentStockClick'])
     ) {
         include('insertCurrentStock.php');
     } elseif (
-        isset($_POST['purchaseTag'])|| isset($_POST['insertPurchase']) || isset($_POST['purchaseFilter'])
+        isset($_POST['purchaseTag']) || isset($_POST['insertPurchase']) || isset($_POST['purchaseFilter'])
     ) {
         include('insertPurchase.php');
     } elseif (
-        isset($_POST['vendorTag'])|| isset($_POST['insertVendor'])
+        isset($_POST['vendorTag']) || isset($_POST['insertVendor'])
         || isset($_POST['vendorClick']) || isset($_GET['deleteVendor'])
     ) {
         include('insertVendor.php');
     } elseif (
-        isset($_POST['wasteTag'])|| isset($_POST['insertWaste'])
+        isset($_POST['wasteTag']) || isset($_POST['insertWaste'])
     ) {
         include('insertWaste.php');
     } elseif (
-        isset($_POST['memberTag'])|| isset($_POST['insertMembers']) || isset($_POST['updateMembers'])
+        isset($_POST['memberTag']) || isset($_POST['insertMembers']) || isset($_POST['updateMembers'])
     ) {
         include('insertMembers.php');
-    } 
+    }
     ?>
 
     
