@@ -6,7 +6,7 @@
     Insert Current Stock
 </div>
 <br>
-<form method="POST" ,action="main.php" style="text-align: left;">
+<form method="POST" ,action="main.php" style="text-align: center;">
     <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
     Type: <input type="text" name="Type"> <br /><br />
     Full Name *: <input type="text" name="FullName"> <br /><br />

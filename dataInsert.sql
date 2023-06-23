@@ -196,7 +196,7 @@ CREATE TABLE Purchase (
     PRIMARY KEY (CatalogNumber, AdminID, Name, Address),
     FOREIGN KEY (CatalogNumber) REFERENCES Items(CatalogNumber),
     FOREIGN KEY (AdminID) REFERENCES LabManager(AdminID),
-    FOREIGN KEY (Name, Address) REFERENCES Vendors(Name, Address) ON DELETE CASCADE,
+    FOREIGN KEY (Name, Address) REFERENCES Vendors(Name, Address) ON DELETE CASCADE
 );
 
 grant

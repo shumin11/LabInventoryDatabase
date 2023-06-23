@@ -27,7 +27,7 @@
                                    WHERE Purchase.Name ='" . $vendor . "' AND
                                    Purchase.CatalogNumber = Items.CatalogNumber");
         while ($row = oci_fetch_array($result, OCI_BOTH)) {       
-            echo "<br>" . $row[0] . "<br>";        
+            echo "<br>" . $row[0];        
         }
 
         echo "<br><br>";
@@ -40,7 +40,7 @@
                                    FROM Purchase
                                    GROUP BY Purchase.Name");
         while ($row = oci_fetch_array($result, OCI_BOTH)) {
-            echo '<br> ' . $row[1] . ' items were purchased from ' . $row[0] . '</br>';
+            echo '<br> ' . $row[1] . ' items were purchased from ' . $row[0];
         }
 
         echo "<br><br>";

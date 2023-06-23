@@ -6,7 +6,7 @@
     Insert Purchase List
 </div>
 <br>
-<form method="POST" ,action="main.php" style="text-align: left;">
+<form method="POST" ,action="main.php" style="text-align: center;">
     <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
     Catalog number *: <input type="text" name="CatalogNumber"> <br /><br />
     Admin ID: <input type="text" name="AdminID"> <br /><br />

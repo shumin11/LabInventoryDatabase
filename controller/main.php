@@ -50,7 +50,7 @@
         .rightpane {
             width: 25%;
             height: 100vh;
-            background-color: #e5fcc2;
+            background-color: #9DE0AD;
         }
 
         body {
@@ -61,11 +61,9 @@
             display: flex;
         }
 
-
-
         .leftpane li {
             display: block;
-            height: 100%;
+            /* height: 100; */
             width: 100%;
             line-height: 100px;
             font-weight: 100px;
@@ -125,7 +123,6 @@
             </div>
 
             <div class="middlepane">
-
 
                 <?php include('listeners/filterListener.php'); ?>
                 
@@ -329,7 +326,7 @@
                     break;
             }
             if ($mode == "ALL") {
-                // echo 'mode all';
+                
                 $result = executePlainSQL("SELECT * FROM " . $table);
             } else {
                 $result = executePlainSQL("SELECT * FROM " . $table . " WHERE " . $mode . "='" . $value . "'");

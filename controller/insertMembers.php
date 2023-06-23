@@ -15,7 +15,7 @@
     <input type="submit" value="insertMembers" name="insertMembers"></p>
 </form>
 
-<form method="POST" ,action="main.php" style="text-align: left;">
+<form method="POST" ,action="main.php" style="text-align: center;">
     <input type="hidden" id="insertQueryRequest" name="insertQueryRequest">
     Old User ID: <input type="text" name="oldUserID"> <br /><br />
     New User ID: <input type="text" name="newUserID"> <br /><br />
